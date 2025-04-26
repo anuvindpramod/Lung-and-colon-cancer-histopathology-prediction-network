@@ -16,11 +16,11 @@ DATASET_STD = [0.16132670640945435, 0.1930888444185257, 0.08985170722007751]
 
 
 MODEL_NAME = "histopath_cnn_cleaned_v1"
-BATCH_SIZE = 64      # NEW: Increased batch size
-NUM_EPOCHS = 100     # Max epochs (early stopping will likely trigger earlier)
-LEARNING_RATE = 0.00015 # NEW: Increased learning rate
+BATCH_SIZE = 64      
+NUM_EPOCHS = 100    
+LEARNING_RATE = 0.00015 
 WEIGHT_DECAY = 1e-4   # Optimizer weight decay
-SCHEDULER_STEP = 20   # LR scheduler step size (in epochs)
+SCHEDULER_STEP = 20   # LR scheduler step size in epochs
 SCHEDULER_GAMMA = 0.5 # LR scheduler reduction factor
 
 

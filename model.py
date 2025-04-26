@@ -1,16 +1,12 @@
-# model.py
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import config # Use updated config
+import config
 
 class HistopathModel(nn.Module):
     """ Custom CNN for Histopathology Image Classification """
     def __init__(self, num_classes=config.NUM_CLASSES):
         super(HistopathModel, self).__init__()
-
-        # Architecture uses BatchNorm and Dropout
-        # Dropout rates from original file: 0, 0, 0.15, 0.2, 0.4
 
         # Block 1
         self.conv1 = nn.Conv2d(config.INPUT_CHANNELS, 32, kernel_size=3, padding=1)
@@ -55,11 +51,11 @@ class HistopathModel(nn.Module):
         self.fc2 = nn.Linear(512, num_classes)
 
     def _get_conv_output_size(self, img_size):
-        # Helper to calculate flattened size after conv/pool layers
+        
         with torch.no_grad():
             dummy_input = torch.zeros(1, config.INPUT_CHANNELS, img_size, img_size)
-            # Simulate forward pass through conv/pool layers
-            x = self.pool1(self.conv2(self.conv1(dummy_input))) # Simplified for size calc
+            
+            x = self.pool1(self.conv2(self.conv1(dummy_input))) 
             x = self.pool2(self.conv4(self.conv3(x)))
             x = self.pool3(self.conv6(self.conv5(x)))
             x = self.pool4(self.conv8(self.conv7(x)))
@@ -91,12 +87,8 @@ class HistopathModel(nn.Module):
         x = self.pool4(x)
         x = self.dropout4(x)
 
-        # Flatten the output for the fully connected layers
-        # Use adaptive flattening to handle potential size mismatches gracefully
         x = x.view(x.size(0), -1)
-        # Verify flattened size matches expected fc_input_size (optional debug)
-        # if x.size(1) != self.fc_input_size:
-        #    print(f"Warning: Flattened size {x.size(1)} != calculated fc_input_size {self.fc_input_size}")
+       
 
         # Fully connected layers
         x = F.relu(self.fc1(x))
