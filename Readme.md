@@ -13,12 +13,11 @@ The proposed custom convolutional neural network architecture will employ sequen
 
 ## Dataset Used
 
-* **Dataset:** We used the "Lung and Colon Cancer Histopathological Images" (LC25000) dataset.
-* **Download:** You can find it on [Kaggle](https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images) or the original [GitHub repo](https://github.com/tampapath/lung_colon_image_set).
+* **Dataset:** I have used the "Lung and Colon Cancer Histopathological Images" dataset.
+* **Download:** It can be found on [Kaggle](https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images) or the original [GitHub repo](https://github.com/tampapath/lung_colon_image_set).
 * **Setup:**
     1.  Download the data.
-    2.  Create a `Dataset` folder in your project root.
-    3.  Organize the images inside `Dataset` like this:
+    2. The Dataset folder inside is organised in such a way 
         ```
         Dataset/
         ├── colon_image_sets/
@@ -29,7 +28,7 @@ The proposed custom convolutional neural network architecture will employ sequen
             ├── lung_n/*.jpeg
             └── lung_scc/*.jpeg
         ```
-* **Citation:** Please cite the original authors if you use this dataset:
+* **Citation:**
     > Borkowski AA, Bui MM, Thomas LB, Wilson CP, DeLand LA, Mastorides SM. Lung and Colon Cancer Histopathological Image Dataset (LC25000). arXiv:1912.12142 \[eess.IV], 2019.
 
 ## Installation
@@ -67,7 +66,7 @@ I used a two-stage approach:
     ```bash
     python predict.py
     ```
-    *(Remember to put 10 sample images per class in the `data/` directory before running this for submission examples)*
+
 
 ## Evaluation Metrics
 
@@ -109,6 +108,6 @@ These results indicate that the trained model generalizes very well to unseen da
 * `interface.py`: Standardizes names for grading compatibility.
 * `_checkpoints/`: Stores saved model weights.
 * `data/`: Sample images required for submission[cite: 6].
-* `Dataset/`: Where the full LC25000 dataset should be placed.
-* `requirements.txt`: List of Python packages needed.
-* `README.md`: This file.
+* `Dataset/`: Where the full dataset is placed.
+* `requirements.txt`: List of Python packages used.
+* `README.md`
