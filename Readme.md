@@ -9,7 +9,7 @@ AI can transform this field by providing rapid, consistent preliminary assessmen
 * **Model Architecture and Reasoning-**
 The proposed custom convolutional neural network architecture will employ sequential convolutional blocks using 3×3 filters to capture delicate histopathological patterns, integrated with batch normalization for training stability and ReLU activation functions for non-linear feature learning, followed by max-pooling layers for progressive dimension reduction. The architecture could incorporate dropout layers (20-30% rates) between convolutional blocks and implement L2 regularization on kernel weights to mitigate overfitting. The classification head utilizes global average pooling to condense spatial features while preserving critical diagnostic information, followed by densely connected layers with progressively reduced units to distill hierarchical representations, culminating in a 5-unit softmax output layer for final class probability distribution. This design would enable specialized optimization for detecting subtle malignant tissue abnormalities in histopathological images while maintaining computational efficiency through deliberate layer depth and parameter constraints and avoiding biases inherent in pre-trained models developed for non-medical image domains.
 
-## Dataset Used: LC25000
+## Dataset
 
 * **Dataset:** We used the "Lung and Colon Cancer Histopathological Images" (LC25000) dataset.
 * **Download:** You can find it on [Kaggle](https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images) or the original [GitHub repo](https://github.com/tampapath/lung_colon_image_set).
