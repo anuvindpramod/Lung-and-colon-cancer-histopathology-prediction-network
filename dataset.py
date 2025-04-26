@@ -9,6 +9,8 @@ from tqdm import tqdm
 import random
 import config 
 
+##The dataset can be downloaded for kaggle using this link https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images/data
+
 def calculate_norm_stats(dataset_root=config.DATASET_ROOT, img_size=config.IMG_SIZE, batch_size=32):
     basic_transform = transforms.Compose([
         transforms.Resize((img_size, img_size)),
