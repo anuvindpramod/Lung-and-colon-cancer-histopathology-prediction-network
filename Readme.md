@@ -35,8 +35,8 @@ The proposed custom convolutional neural network architecture will employ sequen
 
 1.  **Clone:** Get the project files.
     ```bash
-    git clone <https://github.com/anuvindpramod/project_anuvind_pramod.git>
-    cd <project_anuvind_pramod>
+    git clone https://github.com/anuvindpramod/project_anuvind_pramod.git
+    cd project_anuvind_pramod
     ```
 2.  **Dataset:** Set up the `Dataset` folder as described above.
 3.  **Environment:** Create and activate a Python environment (e.g., using `conda` or `venv`).
@@ -62,7 +62,7 @@ I used a two-stage approach:
     ```bash
     python test.py
     ```
-3.  **Predict:** Run prediction on sample images placed in the `data/` folder).
+3.  **Predict:** Run prediction on sample images placed in the `data/` folder). The data/ folder has all 5 class folders with each class folder containing 10 images of that class
     ```bash
     python predict.py
     ```
@@ -107,7 +107,7 @@ These results indicate that the trained model generalizes very well to unseen da
 * `predict.py`: Predicts classes for given image paths.
 * `interface.py`: Standardizes names for grading compatibility.
 * `_checkpoints/`: Stores saved model weights.
-* `data/`: Sample images required for submission[cite: 6].
+* `data/`: The data/ folder has all 5 class folders with each class folder containing 10 images of that class, this will be used for running the predict.py
 * `Dataset/`: Where the full dataset is placed.
 * `requirements.txt`: List of Python packages used.
 * `README.md`
