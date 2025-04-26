@@ -35,8 +35,8 @@ The proposed custom convolutional neural network architecture will employ sequen
 
 1.  **Clone:** Get the project files.
     ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
+    git clone <https://github.com/anuvindpramod/Lung-and-colon-cancer-histopathology-prediction-network.git>
+    cd <Lung-and-colon-cancer-histopathology-prediction>
     ```
 2.  **Dataset:** Set up the `Dataset` folder as described above.
 3.  **Environment:** Create and activate a Python environment (e.g., using `conda` or `venv`).
