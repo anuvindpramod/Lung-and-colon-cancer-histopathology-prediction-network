@@ -62,7 +62,7 @@ I used a two-stage approach:
     ```bash
     python test.py
     ```
-3.  **Predict (Example):** Run prediction on sample images placed in the `data/` folder).
+3.  **Predict:** Run prediction on sample images placed in the `data/` folder).
     ```bash
     python predict.py
     ```
