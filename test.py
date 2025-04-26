@@ -40,16 +40,9 @@ def evaluate_on_test_set(device_str=config.DEVICE):
     if load_path:
         try:
             model.load_state_dict(torch.load(load_path, map_location=device))
-            # print(f"Loaded weights: {load_path}") # Optional status print
         except Exception as e:
-            sys.stderr.write(f"Test Error: Failed loading weights from {load_path}: {e}\n")
-            traceback.print_exc(file=sys.stderr)
             return
     else:
-        sys.stderr.write(f"Test Error: No weights file found!\n")
-        sys.stderr.write(f"  Checked paths:\n")
-        sys.stderr.write(f"    - {final_weights_path} (Priority)\n")
-        sys.stderr.write(f"    - {best_weights_path} (Fallback)\n")
         return
 
 
