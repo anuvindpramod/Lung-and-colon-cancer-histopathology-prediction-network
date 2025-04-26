@@ -29,16 +29,29 @@ def evaluate_on_test_set(device_str=config.DEVICE):
 
     model = HistopathModel(num_classes=config.NUM_CLASSES).to(device)
     best_weights_path = os.path.join(config.CHECKPOINT_DIR, config.BEST_VAL_WEIGHTS_FILE)
+    final_weights_path = os.path.join(config.CHECKPOINT_DIR, config.FINAL_WEIGHTS_FILE)
+    load_path = None
     
-    if os.path.exists(best_weights_path):
+    if os.path.exists(final_weights_path):
+        load_path = final_weights_path
+    elif os.path.exists(best_weights_path):
+        load_path = best_weights_path
+    
+    if load_path:
         try:
-            model.load_state_dict(torch.load(best_weights_path, map_location=device))
+            model.load_state_dict(torch.load(load_path, map_location=device))
+            # print(f"Loaded weights: {load_path}") # Optional status print
         except Exception as e:
-            print(f"Error loading weights: {e}")
+            sys.stderr.write(f"Test Error: Failed loading weights from {load_path}: {e}\n")
+            traceback.print_exc(file=sys.stderr)
             return
     else:
-        print(f"Error: Weights not found at {best_weights_path}")
+        sys.stderr.write(f"Test Error: No weights file found!\n")
+        sys.stderr.write(f"  Checked paths:\n")
+        sys.stderr.write(f"    - {final_weights_path} (Priority)\n")
+        sys.stderr.write(f"    - {best_weights_path} (Fallback)\n")
         return
+
 
     model.eval()
     all_preds = []
