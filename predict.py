@@ -16,10 +16,10 @@ def predict_batch(list_of_image_paths, model=None, device_str=config.DEVICE):
         final_weights_path = os.path.join(config.CHECKPOINT_DIR, config.FINAL_WEIGHTS_FILE)
 
         load_path = None
-        if os.path.exists(best_weights_path):
-            load_path = best_weights_path
-        elif os.path.exists(final_weights_path):
+        if os.path.exists(final_weights_path):
             load_path = final_weights_path
+        elif os.path.exists(best_weights_path):
+            load_path = best_weights_path
         else:
             print(f"Error: No model weights found in {config.CHECKPOINT_DIR}")
             return ["Error: Model weights not found"] * len(list_of_image_paths)
