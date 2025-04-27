@@ -9,8 +9,7 @@ AI can transform this field by providing rapid, consistent preliminary assessmen
 
 * **Model Architecture-**
 The model used is a custom Convolutional Neural Network (CNN) defined in `model.py`, designed specifically for this histopathology classification task. The architecture consists of the following key components:
-
-    1.  **Input:** Accepts images with the number of channels specified in `config.INPUT_CHANNELS` (typically 3 for RGB).
+    1.  **Input:** Accepts images with the number of channels specified in `config.INPUT_CHANNELS` .
     2.  **Convolutional Blocks (4 Blocks):** The core of the network comprises four sequential convolutional blocks. Each block follows a similar pattern:
         * Two `Conv2d` layers with 3x3 kernels and padding=1. These layers extract features from the input. The number of output filters increases with each block (32 -> 32 in Block 1, 32 -> 64 in Block 2, 64 -> 128 in Block 3, 128 -> 256 in Block 4).
         * `BatchNorm2d` layers after each convolution to stabilize learning and improve convergence.
@@ -24,8 +23,6 @@ The model used is a custom Convolutional Neural Network (CNN) defined in `model.
         * A final `Linear` layer maps the 512 features to the number of output classes (`config.NUM_CLASSES`, which is 5). This layer outputs the raw logits for each class.
 
 This architecture progressively extracts more complex features while reducing spatial dimensions and uses techniques like BatchNorm and Dropout to facilitate stable training and improve generalization on the histopathology images.
-
-
 
 ## Dataset Used
 
