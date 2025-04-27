@@ -7,8 +7,24 @@ Histopathological analysis is critical for cancer diagnosis, where pathologists 
 AI can transform this field by providing rapid, consistent preliminary assessments. Recent advancements in machine learning techniques have demonstrated promising results for histopathological image analysis. This project aims to develop an automated classification system that can accurately distinguish between benign and malignant tissues in lung and colon samples, potentially supporting early detection and reducing diagnostic delays that impact patient outcomes
 
 
-* **Model Architecture and Reasoning-**
-The proposed custom convolutional neural network architecture will employ sequential convolutional blocks using 3×3 filters to capture delicate histopathological patterns, integrated with batch normalization for training stability and ReLU activation functions for non-linear feature learning, followed by max-pooling layers for progressive dimension reduction. The architecture could incorporate dropout layers (20-30% rates) between convolutional blocks and implement L2 regularization on kernel weights to mitigate overfitting. The classification head utilizes global average pooling to condense spatial features while preserving critical diagnostic information, followed by densely connected layers with progressively reduced units to distill hierarchical representations, culminating in a 5-unit softmax output layer for final class probability distribution. This design would enable specialized optimization for detecting subtle malignant tissue abnormalities in histopathological images while maintaining computational efficiency through deliberate layer depth and parameter constraints and avoiding biases inherent in pre-trained models developed for non-medical image domains.
+* **Model Architecture-**
+The model used is a custom Convolutional Neural Network (CNN) defined in `model.py`, designed specifically for this histopathology classification task. The architecture consists of the following key components:
+
+    1.  **Input:** Accepts images with the number of channels specified in `config.INPUT_CHANNELS` (typically 3 for RGB).
+    2.  **Convolutional Blocks (4 Blocks):** The core of the network comprises four sequential convolutional blocks. Each block follows a similar pattern:
+        * Two `Conv2d` layers with 3x3 kernels and padding=1. These layers extract features from the input. The number of output filters increases with each block (32 -> 32 in Block 1, 32 -> 64 in Block 2, 64 -> 128 in Block 3, 128 -> 256 in Block 4).
+        * `BatchNorm2d` layers after each convolution to stabilize learning and improve convergence.
+        * `ReLU` activation functions after each BatchNorm layer to introduce non-linearity.
+        * A `MaxPool2d` layer (2x2 kernel, stride 2) at the end of each block to reduce spatial dimensions and provide some translation invariance.
+        * `Dropout` layers after each pooling layer, with increasing probability (p=0 for Blocks 1 & 2, p=0.15 for Block 3, p=0.2 for Block 4) to regularize the network and prevent overfitting in deeper layers.
+    3.  **Flattening:** After the final convolutional block, the feature maps are flattened into a 1D vector. The size of this vector is calculated dynamically based on the input image size (`config.IMG_SIZE`) and the effect of the pooling layers.
+    4.  **Fully Connected Layers:**
+        * A `Linear` layer maps the flattened features to an intermediate size of 512 nodes, followed by a `ReLU` activation.
+        * A `Dropout` layer with a higher probability (p=0.4) is applied before the final classification layer for further regularization.
+        * A final `Linear` layer maps the 512 features to the number of output classes (`config.NUM_CLASSES`, which is 5). This layer outputs the raw logits for each class.
+
+This architecture progressively extracts more complex features while reducing spatial dimensions and uses techniques like BatchNorm and Dropout to facilitate stable training and improve generalization on the histopathology images.
+
 
 
 ## Dataset Used
